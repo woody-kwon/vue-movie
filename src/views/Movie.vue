@@ -3,7 +3,7 @@
     <h1>Movie</h1>
     <div v-for="movie in movies"
       :key="movie.id">
-      <img v-bind:src="movie.thumb" width="100" height="120"/>
+      <MovieImage v-bind:img-url="movie.thumb" />
       <div>{{movie.name}}</div>
       <div>{{movie.releaseDate}}</div>
     </div>
@@ -12,6 +12,7 @@
 
 <script>
 import { fetchAllMovies } from '@/services/movie-service';
+import MovieImage from '@/components/MovieImage.vue';
 
 export default {
   mounted() {
@@ -21,6 +22,9 @@ export default {
     return {
       movies: []
     };
+  },
+  components: {
+    MovieImage,
   },
   methods: {
     async getMovies() {
