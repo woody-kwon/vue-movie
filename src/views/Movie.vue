@@ -1,9 +1,10 @@
 <template>
-  <div>
+  <div class="movie">
     <h1>Movie</h1>
     <div v-for="movie in movies"
       :key="movie.id">
-      <MovieImage v-bind:img-url="movie.thumb" />
+      <MovieImage v-bind:img-url="movie.thumb" 
+        v-bind:movie-ratings="movie.movieRatings"/>
       <div>{{movie.name}}</div>
       <div>{{movie.releaseDate}}</div>
     </div>
@@ -36,5 +37,4 @@ export default {
 </script>
 
 <style scoped>
-
 </style>
