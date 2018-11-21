@@ -1,19 +1,19 @@
 <template>
   <div class="movie">
     <h1>Movie</h1>
-    <div v-for="movie in movies"
-      :key="movie.id">
-      <MovieImage v-bind:img-url="movie.thumb" 
-        v-bind:movie-ratings="movie.movieRatings"/>
-      <div>{{movie.name}}</div>
-      <div>{{movie.releaseDate}}</div>
-    </div>
+
+    <MovieCardList title-name="현재상영작"
+      v-bind:movies="releasedMovies" />
+    
+    <MovieCardList title-name="개봉예정작"
+      v-bind:movies="upcomingMovies" />
   </div>
 </template>
 
 <script>
 import { fetchAllMovies } from '@/services/movie-service';
 import MovieImage from '@/components/MovieImage.vue';
+import MovieCardList from '@/components/MovieCardList.vue';
 
 export default {
   mounted() {
@@ -26,11 +26,20 @@ export default {
   },
   components: {
     MovieImage,
+    MovieCardList,
   },
   methods: {
     async getMovies() {
       const allmovies = await fetchAllMovies();
       this.movies = allmovies;
+    }
+  },
+  computed: {
+    releasedMovies() {
+      return this.movies.filter( movie => movie.releaseDate <= '2018.11.21')
+    },
+    upcomingMovies() {
+      return this.movies.filter( movie => movie.releaseDate > '2018.11.21')
     }
   }
 };
