@@ -1,0 +1,40 @@
+<template>
+  <div class="movie-detail">
+    <h1>Movie Detail</h1>
+
+    <MovieImage v-bind:img-url="movie.thumb" 
+      v-bind:movie-ratings="movie.movieRatings"/>
+    
+    <h2>{{movie.name}}</h2>
+    <div>평점 : {{movie.gradePoint}}</div>
+    <div>장르 : {{movie.genre}}</div>
+    <div>개봉일 : {{movie.releaseDate}}</div>
+    <div>감독 : {{movie.director}}</div>
+    <div>배우 : {{movie.actors}}</div>
+  </div>
+</template>
+
+<script>
+import MovieImage from '@/components/MovieImage.vue';
+
+export default {
+  props: {
+    movie: {
+      type: Object,
+      default: {}
+    },
+  },
+  components: {
+    MovieImage,
+  }
+}
+</script>
+
+<style scoped>
+.movie-detail {
+  margin-top: 50px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+</style>

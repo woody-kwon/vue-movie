@@ -1,5 +1,6 @@
 <template>
-  <div class="movie-card">
+  <div class="movie-card"
+    @click="handleClick">
     <MovieImage v-bind:img-url="movie.thumb" 
       v-bind:movie-ratings="movie.movieRatings"/>
     <div>{{movie.name}}</div>
@@ -28,6 +29,9 @@
         const diffDays = moment(releaseDate).diff(today, 'days');
         
         return diffDays > 0 ? `D-${diffDays}` : releaseDate;
+      },
+      handleClick() {
+        this.$emit('click', this.movie);
       }
     }
   }
@@ -40,5 +44,6 @@
   align-items: center;
   width: 150px;
   word-break: keep-all;
+  cursor: pointer;
 }
 </style>

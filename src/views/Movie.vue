@@ -1,37 +1,53 @@
 <template>
   <div class="movie">
-    <h1>Movie</h1>
+    <h1>Movie List</h1>
 
-    <MovieCardList title-name="현재상영작"
-      v-bind:movies="releasedMovies" />
+    <MovieCardList 
+      title-name="현재상영작"
+      v-bind:movies="releasedMovies" 
+      v-on:selectMovie="handleMovieSelected"/>
     
-    <MovieCardList title-name="개봉예정작"
-      v-bind:movies="upcomingMovies" />
+    <MovieCardList 
+      title-name="개봉예정작"
+      v-bind:movies="upcomingMovies" 
+      v-on:selectMovie="handleMovieSelected"/>
+
+    <MovieDetail 
+      v-show="openDetail"
+      v-bind:movie="selectedMovie"
+      />
   </div>
 </template>
 
 <script>
 import { fetchAllMovies } from '@/services/movie-service';
-import MovieImage from '@/components/MovieImage.vue';
 import MovieCardList from '@/components/MovieCardList.vue';
+import MovieDetail from '@/components/MovieDetail.vue';
 
 export default {
+  name: 'Movie',
   mounted() {
     this.getMovies();
   },
   data() {
     return {
-      movies: []
+      movies: [],
+      openDetail: false,
+      selectedMovie: {},
     };
   },
   components: {
-    MovieImage,
     MovieCardList,
+    MovieDetail,
   },
   methods: {
     async getMovies() {
       const allmovies = await fetchAllMovies();
       this.movies = allmovies;
+    },
+    handleMovieSelected(movie) {
+      this.openDetail = true;
+      this.selectedMovie = movie;
     }
   },
   computed: {

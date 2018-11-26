@@ -5,7 +5,9 @@
       <div 
         v-for="movie in movies"
         :key="movie.id">
-        <MovieCard v-bind:movie="movie" />
+        <MovieCard 
+          v-bind:movie="movie" 
+          v-on:click="handleMovieCardClick"/>
       </div>
     </div>
   </div>
@@ -27,6 +29,11 @@ export default {
   },
   components: {
     MovieCard,
+  },
+  methods: {
+    handleMovieCardClick(movie) {
+      this.$emit('selectMovie', movie)
+    }
   },
 }
 </script>
