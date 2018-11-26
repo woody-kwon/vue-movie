@@ -1,10 +1,12 @@
 <template>
   <div>
     <h2>{{titleName}}</h2>
-    <div class="movie-card-list"
-      v-for="movie in movies"
-      :key="movie.id">
-      <MovieCard v-bind:movie="movie" />
+    <div class="movie-card-list">
+      <div 
+        v-for="movie in movies"
+        :key="movie.id">
+        <MovieCard v-bind:movie="movie" />
+      </div>
     </div>
   </div>
 </template>
@@ -32,7 +34,9 @@ export default {
 <style scoped>
 .movie-card-list {
   display: flex;
-  flex-direction: column;
-  align-items: center;
+  flex-direction: row;
+  align-items: flex-start;
+  justify-content: center;
+  flex-wrap: wrap;
 }
 </style>
