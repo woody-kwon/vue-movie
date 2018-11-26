@@ -4,17 +4,13 @@
     <div class="movie-card-list"
       v-for="movie in movies"
       :key="movie.id">
-      <MovieImage v-bind:img-url="movie.thumb" 
-        v-bind:movie-ratings="movie.movieRatings"/>
-      <div>{{movie.name}}</div>
-      <div>{{formatedReleaseDate(movie.releaseDate)}}</div>
+      <MovieCard v-bind:movie="movie" />
     </div>
   </div>
 </template>
 
 <script>
-import MovieImage from '@/components/MovieImage.vue';
-import moment from 'moment';
+import MovieCard from '@/components/MovieCard.vue';
 
 export default {
   props: {
@@ -28,17 +24,8 @@ export default {
     }
   },
   components: {
-    MovieImage,
+    MovieCard,
   },
-  methods: {
-    formatedReleaseDate(releaseDate) {
-      const today = moment();
-
-      const diffDays = moment(releaseDate).diff(today, 'days');
-      
-      return diffDays > 0 ? `D-${diffDays}` : releaseDate;
-    }
-  }
 }
 </script>
 
