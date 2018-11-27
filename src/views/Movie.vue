@@ -4,22 +4,18 @@
 
     <MovieCardList 
       title-name="현재상영작"
-      v-bind:movies="releasedMovies" 
-      v-on:selectMovie="handleMovieSelected"/>
+      v-bind:movies="releasedMovies" />
     
     <MovieCardList 
       title-name="개봉예정작"
-      v-bind:movies="upcomingMovies" 
-      v-on:selectMovie="handleMovieSelected"/>
+      v-bind:movies="upcomingMovies" />
 
-    <MovieDetail 
-      v-show="openDetail"
-      v-bind:movie="selectedMovie"
-      />
+    <MovieDetail v-show="isMovieDetailOpen"/>
   </div>
 </template>
 
 <script>
+import { mapState } from 'vuex'
 import { fetchAllMovies } from '@/services/movie-service';
 import MovieCardList from '@/components/MovieCardList.vue';
 import MovieDetail from '@/components/MovieDetail.vue';
@@ -32,8 +28,6 @@ export default {
   data() {
     return {
       movies: [],
-      openDetail: false,
-      selectedMovie: {},
     };
   },
   components: {
@@ -45,10 +39,6 @@ export default {
       const allmovies = await fetchAllMovies();
       this.movies = allmovies;
     },
-    handleMovieSelected(movie) {
-      this.openDetail = true;
-      this.selectedMovie = movie;
-    }
   },
   computed: {
     releasedMovies() {
@@ -56,7 +46,12 @@ export default {
     },
     upcomingMovies() {
       return this.movies.filter( movie => movie.releaseDate > '2018.11.21')
-    }
+    },
+    ...mapState({
+      isMovieDetailOpen(state) {
+        return state.isMovieDetailOpen;
+      }
+    })
   }
 };
 </script>

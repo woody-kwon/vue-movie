@@ -16,17 +16,17 @@
 
 <script>
 import MovieImage from '@/components/MovieImage.vue';
+import { mapState } from 'vuex';
 
 export default {
-  props: {
-    movie: {
-      type: Object,
-      default: {}
-    },
-  },
   components: {
     MovieImage,
-  }
+  },
+  computed: mapState({
+    movie(state) {
+      return state.movie;
+    }
+  })
 }
 </script>
 

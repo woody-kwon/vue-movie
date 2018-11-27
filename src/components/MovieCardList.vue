@@ -32,7 +32,7 @@ export default {
   },
   methods: {
     handleMovieCardClick(movie) {
-      this.$emit('selectMovie', movie)
+      this.$store.commit('openMovieDetail', movie);
     }
   },
 }
