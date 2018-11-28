@@ -27,7 +27,6 @@ export default {
   },
   data() {
     return {
-      movies: [],
     };
   },
   components: {
@@ -35,9 +34,10 @@ export default {
     MovieDetail,
   },
   methods: {
-    async getMovies() {
-      const allmovies = await fetchAllMovies();
-      this.movies = allmovies;
+    getMovies() {
+      // const allmovies = await fetchAllMovies();
+      // this.movies = allmovies;
+      this.$store.dispatch('getMovieList');
     },
   },
   computed: {
@@ -50,7 +50,10 @@ export default {
     ...mapState({
       isMovieDetailOpen(state) {
         return state.isMovieDetailOpen;
-      }
+      },
+      movies (state) {
+        return state.movies;
+      },
     })
   }
 };
