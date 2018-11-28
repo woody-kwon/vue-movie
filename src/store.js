@@ -11,6 +11,14 @@ export default new Vuex.Store({
     movie: null,
     movies: [],
   },
+  getters: {
+    releasedMovies: state => {
+      return state.movies.filter( movie => movie.releaseDate <= '2018.11.21');
+    },
+    upcomingMovies: state => {
+      return state.movies.filter( movie => movie.releaseDate > '2018.11.21')
+    },
+  },
   mutations: {
     openMovieDetail (state, payload) {
       state.isMovieDetailOpen = true;

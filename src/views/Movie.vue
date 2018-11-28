@@ -15,7 +15,7 @@
 </template>
 
 <script>
-import { mapState } from 'vuex'
+import { mapState, mapGetters } from 'vuex'
 import { fetchAllMovies } from '@/services/movie-service';
 import MovieCardList from '@/components/MovieCardList.vue';
 import MovieDetail from '@/components/MovieDetail.vue';
@@ -35,18 +35,10 @@ export default {
   },
   methods: {
     getMovies() {
-      // const allmovies = await fetchAllMovies();
-      // this.movies = allmovies;
       this.$store.dispatch('getMovieList');
     },
   },
   computed: {
-    releasedMovies() {
-      return this.movies.filter( movie => movie.releaseDate <= '2018.11.21')
-    },
-    upcomingMovies() {
-      return this.movies.filter( movie => movie.releaseDate > '2018.11.21')
-    },
     ...mapState({
       isMovieDetailOpen(state) {
         return state.isMovieDetailOpen;
@@ -54,7 +46,10 @@ export default {
       movies (state) {
         return state.movies;
       },
-    })
+    }),
+    ...mapGetters(
+      ['releasedMovies', 'upcomingMovies']
+    ),
   }
 };
 </script>
