@@ -6,7 +6,7 @@
       v-bind:movie-ratings="movie.movieRatings"/>
     
     <h2>{{movie.name}}</h2>
-    <div>평점 : {{movie.gradePoint}}</div>
+    <div>평점 : {{movie.gradePoint | rounds }}</div>
     <div>장르 : {{movie.genre}}</div>
     <div>개봉일 : {{movie.releaseDate}}</div>
     <div>감독 : {{movie.director}}</div>
@@ -26,7 +26,12 @@ export default {
     movie(state) {
       return state.movie;
     }
-  })
+  }),
+  filters: {
+    rounds: function(value) {
+      return value == 0 ? value : value.toFixed(1);
+    }
+  }
 }
 </script>
 
