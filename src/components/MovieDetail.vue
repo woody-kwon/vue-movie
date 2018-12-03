@@ -6,7 +6,7 @@
       v-bind:movie-ratings="movie.movieRatings"/>
     
     <h2>{{movie.name}}</h2>
-    <div>평점 : {{movie.gradePoint | rounds }}</div>
+    <div>평점 : <StarPoint :point="movie.gradePoint" />{{movie.gradePoint | rounds }}</div>
     <div>장르 : {{movie.genre}}</div>
     <div>개봉일 : {{movie.releaseDate}}</div>
     <div>감독 : {{movie.director}}</div>
@@ -16,11 +16,13 @@
 
 <script>
 import MovieImage from '@/components/MovieImage.vue';
+import StarPoint from '@/components/StarPoint.vue';
 import { mapState } from 'vuex';
 
 export default {
   components: {
     MovieImage,
+    StarPoint,
   },
   computed: mapState({
     movie(state) {
