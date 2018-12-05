@@ -1,4 +1,4 @@
-import { shallowMount, mount } from '@vue/test-utils';
+import { shallowMount } from '@vue/test-utils';
 import StarPoint from '@/components/StarPoint.vue';
 
 describe('StarPoint', () => {
@@ -14,8 +14,8 @@ describe('StarPoint', () => {
 
     const wrapper = shallowMount(StarPoint, {
       propsData: {
-        point
-      }
+        point,
+      },
     });
 
     expect(wrapper.props().point).toBe(1);
@@ -25,20 +25,20 @@ describe('StarPoint', () => {
 
     const wrapper = shallowMount(StarPoint, {
       propsData: {
-        point
-      }
+        point,
+      },
     });
- 
+
     expect(wrapper.find('.star').exists()).toBe(false);
   });
 
   it('should be exist one star when passed props.point with 1', () => {
     const point = 5;
-    
+
     const wrapper = shallowMount(StarPoint, {
       propsData: {
-        point
-      }
+        point,
+      },
     });
 
     expect(wrapper.findAll('.star').length).toBe(3);

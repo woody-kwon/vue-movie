@@ -1,11 +1,11 @@
-import {fetchAllMovies} from '@/services/movie-service';
+import { fetchAllMovies } from '@/services/movie-service';
 
 describe('movie service', () => {
   it('should return array', async () => {
     const resp = [];
 
-    const fakeFetch = jest.fn().mockImplementation( ()=> Promise.resolve({
-      json: () => Promise.resolve(resp)
+    const fakeFetch = jest.fn().mockImplementation(() => Promise.resolve({
+      json: () => Promise.resolve(resp),
     }));
     window.fetch = fakeFetch;
 

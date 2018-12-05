@@ -2,11 +2,11 @@
   <div class="movie">
     <h1>Movie List</h1>
 
-    <MovieCardList 
+    <MovieCardList
       title-name="현재상영작"
       v-bind:movies="releasedMovies" />
-    
-    <MovieCardList 
+
+    <MovieCardList
       title-name="개봉예정작"
       v-bind:movies="upcomingMovies" />
 
@@ -15,7 +15,7 @@
 </template>
 
 <script>
-import { mapState, mapGetters } from 'vuex'
+import { mapState, mapGetters } from 'vuex';
 import { fetchAllMovies } from '@/services/movie-service';
 import MovieCardList from '@/components/MovieCardList.vue';
 import MovieDetail from '@/components/MovieDetail.vue';
@@ -43,14 +43,14 @@ export default {
       isMovieDetailOpen(state) {
         return state.isMovieDetailOpen;
       },
-      movies (state) {
+      movies(state) {
         return state.movies;
       },
     }),
     ...mapGetters(
-      ['releasedMovies', 'upcomingMovies']
+      ['releasedMovies', 'upcomingMovies'],
     ),
-  }
+  },
 };
 </script>
 

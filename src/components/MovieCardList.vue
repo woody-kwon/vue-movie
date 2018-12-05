@@ -2,11 +2,11 @@
   <div>
     <h2>{{titleName}}</h2>
     <div class="movie-card-list">
-      <div 
+      <div
         v-for="movie in movies"
         :key="movie.id">
-        <MovieCard 
-          v-bind:movie="movie" 
+        <MovieCard
+          v-bind:movie="movie"
           v-on:click="handleMovieCardClick"/>
       </div>
     </div>
@@ -20,12 +20,12 @@ export default {
   props: {
     titleName: {
       type: String,
-      default: ''
+      default: '',
     },
     movies: {
       type: Array,
-      default: []
-    }
+      default: () => [],
+    },
   },
   components: {
     MovieCard,
@@ -33,9 +33,9 @@ export default {
   methods: {
     handleMovieCardClick(movie) {
       this.$store.commit('openMovieDetail', movie);
-    }
+    },
   },
-}
+};
 </script>
 
 <style scoped>

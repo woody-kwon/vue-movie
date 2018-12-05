@@ -1,7 +1,7 @@
 <template>
   <div class="movie-card"
     @click="handleClick">
-    <MovieImage v-bind:img-url="movie.thumb" 
+    <MovieImage v-bind:img-url="movie.thumb"
       v-bind:movie-ratings="movie.movieRatings"/>
     <div>{{movie.name}}</div>
     <div>{{formatedReleaseDate(movie.releaseDate)}}</div>
@@ -9,32 +9,32 @@
 </template>
 
 <script>
-  import MovieImage from '@/components/MovieImage.vue';
-  import moment from 'moment';
+import MovieImage from '@/components/MovieImage.vue';
+import moment from 'moment';
 
-  export default {
-    props: {
-      movie: {
-        type: Object,
-        default: {}
-      },
+export default {
+  props: {
+    movie: {
+      type: Object,
+      default: {},
     },
-    components: {
-      MovieImage,
-    },
-    methods: {
-      formatedReleaseDate(releaseDate) {
-        const today = moment();
+  },
+  components: {
+    MovieImage,
+  },
+  methods: {
+    formatedReleaseDate(releaseDate) {
+      const today = moment();
 
-        const diffDays = moment(releaseDate).diff(today, 'days');
-        
-        return diffDays > 0 ? `D-${diffDays}` : releaseDate;
-      },
-      handleClick() {
-        this.$emit('click', this.movie);
-      }
-    }
-  }
+      const diffDays = moment(releaseDate).diff(today, 'days');
+
+      return diffDays > 0 ? `D-${diffDays}` : releaseDate;
+    },
+    handleClick() {
+      this.$emit('click', this.movie);
+    },
+  },
+};
 </script>
 
 <style scoped>

@@ -2,9 +2,9 @@
   <div class="movie-detail">
     <h1>Movie Detail</h1>
 
-    <MovieImage v-bind:img-url="movie.thumb" 
+    <MovieImage v-bind:img-url="movie.thumb"
       v-bind:movie-ratings="movie.movieRatings"/>
-    
+
     <h2>{{movie.name}}</h2>
     <div>평점 : <StarPoint :point="movie.gradePoint" />{{movie.gradePoint | rounds }}</div>
     <div>장르 : {{movie.genre}}</div>
@@ -27,14 +27,14 @@ export default {
   computed: mapState({
     movie(state) {
       return state.movie;
-    }
+    },
   }),
   filters: {
-    rounds: function(value) {
+    rounds(value) {
       return value == 0 ? value : value.toFixed(1);
-    }
-  }
-}
+    },
+  },
+};
 </script>
 
 <style scoped>
