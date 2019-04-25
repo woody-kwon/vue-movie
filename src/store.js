@@ -10,16 +10,6 @@ export const getters = {
   upcomingMovies: state => state.movies.filter(movie => movie.releaseDate > '2018.11.21'),
 };
 
-export const mutations = {
-  openMovieDetail(state, payload) {
-    state.isMovieDetailOpen = true;
-    state.movie = payload;
-  },
-  setMovies(state, movies) {
-    state.movies = movies;
-  },
-};
-
 export const actions = {
   async getMovieList({ commit }) {
     const movies = await fetchAllMovies();
@@ -30,11 +20,9 @@ export const actions = {
 
 export default new Vuex.Store({
   state: {
-    isMovieDetailOpen: false,
     movie: null,
     movies: [],
   },
   getters,
-  mutations,
   actions,
 });
