@@ -1,16 +1,18 @@
 <template>
     <div>
-        <img :src="movie.thumb" 
-            v-if="movie.thumb"/>
-        <img src="@/assets/noimage.jpg"
-            v-else/>
+        <movie-card-image :thumbnail="movie.thumb"/>
         <div> {{movie.name}} </div>
         <div> {{movie.releaseDate}} </div>
     </div>
 </template>
 
 <script>
+import MovieCardImage from '@/components/MovieCardImage.vue';
+
     export default {
+        components: {
+            MovieCardImage,
+        },
         props:{
         movie: {
             type: Object,
