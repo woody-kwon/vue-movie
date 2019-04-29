@@ -1,6 +1,6 @@
 <template>
-    <div>
-        <movie-card-image :thumbnail="movie.thumb"/>
+    <div class="card-wrapper">
+        <movie-card-image :thumbnail="movie.thumb" :movie-ratings="movie.movieRatings"/>
         <div> {{movie.name}} </div>
         <div> {{movie.releaseDate}} </div>
     </div>
@@ -23,5 +23,7 @@ import MovieCardImage from '@/components/MovieCardImage.vue';
 </script>
 
 <style lang="scss" scoped>
-
+    .card-wrapper {
+        width: 300px;
+    }
 </style>
