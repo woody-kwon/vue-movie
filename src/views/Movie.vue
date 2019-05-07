@@ -2,13 +2,21 @@
   <div class="movie">
     Movies
     <h1> 상영예정작 </h1>
-    <div class="movie-card-wrapper" v-for="movie in movies" :key="movie.id">
-      <movie-card :movie="movie" />
+    <div class="movie-card-wrapper" v-for="movie in upcomingMovies" :key="movie.id">
+      <movie-card :movie="movie" 
+      @click="handleOnClick" />
     </div>
 
     <h1> 현재상영작 </h1>
-    <div class="movie-card-wrapper" v-for="movie in movies" :key="movie.id">
-      <movie-card :movie="movie" />
+    <div class="movie-card-wrapper" v-for="movie in releasedMovies" :key="movie.id">
+      <movie-card :movie="movie" 
+      @click="handleOnClick" />
+    </div>
+    <div>
+      <h1> 상세정보 </h1>
+      <div>
+        {{ selectedMovie }}
+      </div>
     </div>
   </div>
 </template>
@@ -29,7 +37,25 @@ export default {
   data() {
     return {
       movies: [],
+      today: '2019.05.07',
+      selectedId: null,
     };
+  },
+  computed: {
+    releasedMovies() {
+      return this.movies.filter (({releaseDate}) => releaseDate <= this.today);
+    },
+    upcomingMovies() {
+      return this.movies.filter (({releaseDate}) => releaseDate > this.today);
+    },
+    selectedMovie() {
+      return this.movies.filter (({id}) => id === this.selectedId);
+    },
+  },
+  methods: {
+    handleOnClick(id){
+      this.selectedId = id;
+    }
   },
 };
 </script>

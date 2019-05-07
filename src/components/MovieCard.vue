@@ -1,5 +1,5 @@
 <template>
-    <div class="card-wrapper">
+    <div class="card-wrapper" @click="handleOnClick">
         <movie-card-image :thumbnail="movie.thumb" :movie-ratings="movie.movieRatings"/>
         <div> {{movie.name}} </div>
         <div> {{movie.releaseDate}} </div>
@@ -18,6 +18,11 @@ import MovieCardImage from '@/components/MovieCardImage.vue';
             type: Object,
             default: () => {},
             },
+        },
+        methods: {
+            handleOnClick() {
+                this.$emit("click", this.movie.id);
+            }
         },  
     }
 </script>
