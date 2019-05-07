@@ -13,11 +13,11 @@ import MovieCardImage from '@/components/MovieCardImage.vue';
         components: {
             MovieCardImage,
         },
-        props:{
-        movie: {
-            type: Object,
-            default: () => {},
-            },
+        props: {
+            movie: {
+                type: Object,
+                default: () => {},
+                },
         },
         methods: {
             handleOnClick() {
