@@ -34,6 +34,7 @@ import MovieRatings from '@/components/MovieRatings.vue';
     .movie-thumbnail-wrapper {
         position: relative;
         width: 100px;
+        margin: 0 auto;
     }
     .thumbnail {
         width: 100px;
