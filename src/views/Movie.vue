@@ -2,16 +2,16 @@
   <div class="movie">
     Movies
     <h1> 상영예정작 </h1>
-    <div class="movie-card-wrapper" v-for="movie in upcomingMovies" :key="movie.id">
-      <movie-card :movie="movie" @click="handleOnClick" />
+    <div class="movie-card-wrapper">
+      <movie-card v-for="movie in upcomingMovies" :key="movie.id" :movie="movie" @click="handleOnClick" />
     </div>
 
     <h1> 현재상영작 </h1>
-    <div class="movie-card-wrapper" v-for="movie in releasedMovies" :key="movie.id">
-      <movie-card :movie="movie" @click="handleOnClick" />
+    <div class="movie-card-wrapper">
+      <movie-card v-for="movie in releasedMovies" :key="movie.id" :movie="movie" @click="handleOnClick" />
     </div>
     <div class="movie-detail-wrapper">
-      <movie-detail :selected-movie="selectedMovie" :selectedId="selectedId" />
+      <movie-detail :selectedId="selectedId" />
     </div>
   </div>
 </template>

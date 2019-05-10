@@ -9,12 +9,15 @@
 
 <script>
 export default {
+  computed: {
+    selectedMovie() {
+      return this.$store.state.selectedMovie;
+    }
+  },
   props: {
-    selectedMovie: {
-      type: Array,
-    },
     selectedId: {
       type: Number,
+      default: null 
     },
   },
 };

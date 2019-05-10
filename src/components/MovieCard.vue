@@ -22,6 +22,8 @@ import MovieCardImage from '@/components/MovieCardImage.vue';
         methods: {
             handleOnClick() {
                 this.$emit("click", this.movie.id);
+
+                this.$store.commit('setSelectedMovie', this.movie);
             }
         },  
     }
