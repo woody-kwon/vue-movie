@@ -3,15 +3,15 @@
     Movies
     <h1> 상영예정작 </h1>
     <div class="movie-card-wrapper">
-      <movie-card v-for="movie in upcomingMovies" :key="movie.id" :movie="movie" @click="handleOnClick" />
+      <movie-card v-for="movie in upcomingMovies" :key="movie.id" :movie="movie" />
     </div>
 
     <h1> 현재상영작 </h1>
     <div class="movie-card-wrapper">
-      <movie-card v-for="movie in releasedMovies" :key="movie.id" :movie="movie" @click="handleOnClick" />
+      <movie-card v-for="movie in releasedMovies" :key="movie.id" :movie="movie" />
     </div>
     <div class="movie-detail-wrapper">
-      <movie-detail :selectedId="selectedId" />
+      <movie-detail />
     </div>
   </div>
 </template>
@@ -36,7 +36,6 @@ export default {
     return {
       movies: [],
       today: '2019.05.07',
-      selectedId: null,
     };
   },
 
@@ -46,15 +45,6 @@ export default {
     },
     upcomingMovies() {
       return this.movies.filter(({ releaseDate }) => releaseDate > this.today);
-    },
-    selectedMovie() {
-      return this.movies.filter(({ id }) => id === this.selectedId);
-    },
-  },
-
-  methods: {
-    handleOnClick(id) {
-      this.selectedId = id;
     },
   },
 };

@@ -5,10 +5,7 @@ Vue.use(Vuex);
 
 export default new Vuex.Store({
   state: {
-    selectedMovie: undefined,
-  },
-  getters: {
-
+    selectedMovie: {},
   },
   mutations: {
     setSelectedMovie(state, movie) {
@@ -17,5 +14,5 @@ export default new Vuex.Store({
   },
   actions: {
 
-  }
+  },
 });
